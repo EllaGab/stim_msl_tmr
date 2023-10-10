@@ -1,4 +1,4 @@
-# stim_TMR_MSL
+# stim_msl_tmr
 Motor sequence learning (MSL) task adopted from the "stim" repo to conduct target memory reactivation (TMR) experiment using sound.
 The starting point for the current repo is the branch "prakriti-task" created by Thibault Vlieghe by August 2022 (thibault.vlieghe@mcgill.ca)
 More details about the source repo "stim", can be found on GitHub: https://github.com/labdoyon/stim.git
@@ -12,7 +12,7 @@ More details about the source repo "stim", can be found on GitHub: https://githu
     "Statistics and Machine Learning Toolbox" and install it.
  
 3/5 Clone or download stim_TMR_MSL from github
-	https://github.com/EllaGab/stim_TMR_MSL.git
+	https://github.com/EllaGab/stim_msl_tmr.git
 	Don't move files around. Respect the structure of the github repository
 
 4/5 Download and install Psychtoolbox
