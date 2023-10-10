@@ -11,7 +11,7 @@ More details about the source repo "stim", can be found on GitHub: https://githu
     going to the "Add-Ons" menu in MATLAB and selecting "Get Add-Ons." Search for the
     "Statistics and Machine Learning Toolbox" and install it.
  
-3/5 Clone or download stim_TMR_MSL from github
+3/5 Clone or download stim_msl_tmr from github
 	https://github.com/EllaGab/stim_msl_tmr.git
 	Don't move files around. Respect the structure of the github repository
 
