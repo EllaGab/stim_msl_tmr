@@ -213,8 +213,8 @@ try
         tasklog(end+1).desc = hand_str;
         tasklog(end).onset = GetSecs - timeStartTask;
 
-        % Wait for TTL key (='5') to start the task
-        [quit, ~, ~, ~] = ld_keysWait4ttl();
+        % Wait for the instructions' time to elapse or the ESC key to exit
+        [quit, ~, ~, ~] = ld_timeWait(param.instructionsDur);
         if quit
             data_saved = 0;
             output_fpath = [];

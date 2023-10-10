@@ -1,23 +1,33 @@
 
 --- IMPLEMENT OR FIX
 
+    >   PreSleep menu is updated and now contains two traning phases
+        VALIDATED
+
+    >   Change all the steps of the familiarization phases so that they can be run together with the scanning
+        - Resolved by setting instructions' time; DEFAULT: 5 secs
+        READY TO VALIDATE...
+
+    >   Fix the size of the text when the participant makes a mistake initiating the performance
+        (e.g., enters incorrectly the first two keys or uses a wrong hand)
+        The text was shortened.
+        READY TO VALIDATE...
+
+    >   Save the output only after the performance block is completed (do not access the file during the performance)
+
 	> 	Present only the remaining blocks if the session was previously initiated
 		- The number of completed blocks should be saved in the param file
-    >   Display the full feedback display during the training and tests
+
+    >   Show the full feedback display during the training and tests
         - The viewer should be able to view all the results, right now the only first 
            few trail performance can be viewed. 
+
     >   Save the feedback performance data in text/csv files in output folder after performance
 
 
 When done:
 > hide the cursor
-> remove the rsa key
-
-
-
-
-
-
+> remove the rsa key from the task computer
 
 
 PSYCHTOOLBOX TIPS

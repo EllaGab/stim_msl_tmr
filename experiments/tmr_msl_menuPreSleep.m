@@ -22,7 +22,6 @@ function tmr_msl_menuPreSleep(exp_phase, param_fpath)
                        'Introduction - Sound-Hand-Sequence',...
                        'Training - Phase 1', ...
                        'Training - Phase 2', ...
-                       'Training - Phase 3', ...
                        'Test', ...
                        'Quit'...
                        );
@@ -41,10 +40,8 @@ function tmr_msl_menuPreSleep(exp_phase, param_fpath)
             case 6
                 tmr_msl_task(param_fpath, exp_phase, 'training', 2);
             case 7
-                tmr_msl_task(param_fpath, exp_phase, 'training', 3);
-            case 8 
                 tmr_msl_task(param_fpath, exp_phase, 'test');
-            case 9
-                break;
+            case 8 
+                 break;
         end
     end

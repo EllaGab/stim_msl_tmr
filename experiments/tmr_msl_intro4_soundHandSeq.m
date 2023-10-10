@@ -317,11 +317,11 @@ try
             tasklog(end+1).desc = 'instructions-start';
             tasklog(end).onset = GetSecs - timeStartTask;
     
-            % Wait for TTL key (='5') to start the task
+            % Wait for the instructions' time to elapse or the ESC key to exit
             quit = 0;
-            ttlKeyPressed = 0;
-            while ~quit && ~ ttlKeyPressed
-                [quit, ~, ttlKeyPressed, key2readPressed] = ld_keysWait4ttl(keyPlay);
+            timeElapsed = 0;
+            while ~quit && ~timeElapsed
+                [quit, ~, timeElapsed, key2readPressed] = ld_timeWait(param.instructionsDur, keyPlay);
 
                 if quit
                     data_saved = 0;

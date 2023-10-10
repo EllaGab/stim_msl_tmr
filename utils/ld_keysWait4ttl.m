@@ -10,13 +10,13 @@ function [quit, secs, ttlKeyPressed, key2readPressed] = ld_keysWait4ttl(keys2rea
 %   ESC to exit
 %
 % INPUT
-%   keys2read       cell array with keys to read; other keys are ignored
+%   keys2read       cell array with expected keys; other keys are ignored
 %
 % OUTPUT:
 %   quit            exit before the end (esc)? (0: no; 1:yes)
 %   secs            the time the expected key was pressed
 %   ttlKeyPressed   1 - TTL key was pressed, 0 - otherwise
-%   keyName         cell array with key names that were pressed      
+%   key2readPressed 1 - one of the expected keys was pressed, 0 - otherwise     
 %
 % Ella Gabitov 13 October 2022
 %

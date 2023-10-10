@@ -394,7 +394,7 @@ try
                 tasklog(end).value = 'time to respond passed';
                 tasklog(end).onset = GetSecs - timeStartTask;
                 msg = num2str(seq);
-                footer = '... DID YOU FORGET THE SEQUENCE? LETS TRY AGAIN ...';
+                footer = '... NO KEYS PRESSED. LETS TRY AGAIN ...';
             
             else
                 % Correct start of the sequence performed using the correct hand
@@ -416,7 +416,7 @@ try
                     tasklog(end).value = 'wrong hand';
                     tasklog(end).onset = GetSecs - timeStartTask;
                     msg = num2str(seq);
-                    footer = '... DID YOU FORGET THE SEQUENCE? LETS TRY AGAIN ...';
+                    footer = '... WRONG SEQUENCE. LETS TRY AGAIN ...';
                 end
             end % IF waitMax time
 

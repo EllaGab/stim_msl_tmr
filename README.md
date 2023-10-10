@@ -5,15 +5,21 @@ More details about the source repo "stim", can be found on GitHub: https://githu
 
 ## Installation
 
-1/3 Clone or download stim_TMR_MSL from github
+1/5 Install Matlab; the current version was validated on Matlab R2023a
+
+2/5 Install Statistics and Machine Learning Toolbox in Matlab. You can do that by
+    going to the "Add-Ons" menu in MATLAB and selecting "Get Add-Ons." Search for the
+    "Statistics and Machine Learning Toolbox" and install it.
+ 
+3/5 Clone or download stim_TMR_MSL from github
 	https://github.com/EllaGab/stim_TMR_MSL.git
 	Don't move files around. Respect the structure of the github repository
 
-2/3 Download and install Psychtoolbox
+4/5 Download and install Psychtoolbox
 	http://psychtoolbox.org/download
 	Note that you will need to install GStreamer as well
 
-3/3 Add stim.m experiments/ stimuli/ analysis/ to MATLAB path
+5/5 Add stim.m experiments/ stimuli/ analysis/ to MATLAB path (optional).
 	Running stim.m will automatically add all the required files to the MATLAB path
 
 ## Auditory Stimuli

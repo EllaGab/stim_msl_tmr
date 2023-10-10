@@ -72,29 +72,33 @@ hands = [];
 % DO NOT CHANGE THE ORGER OF THE DIGITS:
 %   Keep it from the index to little finger
 
-hands(end+1).desc = 'left';
-hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
-hands(end).keys = {'a', 'b', 'c', 'd'};     % Keys that correspond to each digit
+% hands(end+1).desc = 'right';
+% hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
+% hands(end).keys = {'a', 'b', 'c', 'd'};     % Keys that correspond to each digit
+% 
+% hands(end+1).desc = 'left';
+% hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
+% hands(end).keys = {'4', '3', '2', '1'};     % Keys that correspond to each digit
 
+% For debugging purposes only using a keyboard
 hands(end+1).desc = 'right';
+hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
+hands(end).keys = {'6', '7', '8', '9'};     % Keys that correspond to each digit
+
+hands(end+1).desc = 'left';
 hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
 hands(end).keys = {'4', '3', '2', '1'};     % Keys that correspond to each digit
 
-% hands(end+1).desc = 'left';
-% hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
-% hands(end).keys = {'1', '2', '3', '4'};     % Keys that correspond to each digit
-% 
-% hands(end+1).desc = 'right';
-% hands(end).digits = {'4', '3', '2', '1'};   % digits from the index to little finger
-% hands(end).keys = {'d', 'c', 'b', 'a'};     % Keys that correspond to each digit
-  param.hands = hands;
+param.hands = hands;
 
 %% SOUND
 
 param.sounds = {'sound_shortest-1-100ms.wav', 'sound_shortest-3-100ms.wav'};
 
 %% OTHER PARAMETERS
+% All times / durations are given in seconds
 
+param.instructionsDur = 5;      % the time to show the task instructions
 param.waitMax = 5;              % max time to wait for response, in seconds
 param.fullScreen= 1;            % 0: subwindow, 1: whole desktop => see createWindow.m for modifications
 param.flipScreen = 0;           % 0: don't flip, 1: flip monitor
