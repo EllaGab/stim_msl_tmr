@@ -2,16 +2,16 @@
 --- IMPLEMENT OR FIX
 
     >   PreSleep menu is updated and now contains two traning phases
-        VALIDATED
+        TEST PASSED
 
     >   Change all the steps of the familiarization phases so that they can be run together with the scanning
         - Resolved by setting instructions' time; DEFAULT: 5 secs
-        READY TO VALIDATE...
+        TEST PASSED
 
     >   Fix the size of the text when the participant makes a mistake initiating the performance
         (e.g., enters incorrectly the first two keys or uses a wrong hand)
         The text was shortened.
-        READY TO VALIDATE...
+        TEST PASSED, CHECK INSIDE MR SUIT
 
     >   Save the output only after the performance block is completed (do not access the file during the performance)
 

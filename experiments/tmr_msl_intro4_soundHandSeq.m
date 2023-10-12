@@ -317,24 +317,8 @@ try
             tasklog(end+1).desc = 'instructions-start';
             tasklog(end).onset = GetSecs - timeStartTask;
     
-            % Wait for the instructions' time to elapse or the ESC key to exit
-            quit = 0;
-            timeElapsed = 0;
-            while ~quit && ~timeElapsed
-                [quit, ~, timeElapsed, key2readPressed] = ld_timeWait(param.instructionsDur, keyPlay);
-
-                if quit
-                    data_saved = 0;
-                    output_fpath = [];
-                    clear_and_close();
-                    return;
-                end
-
-                if key2readPressed
-                    % Play the sound
-                    PsychPortAudio('Start', pahandle, 1, 0, 1); % repetitions = 1
-                end
-            end
+            % Wait for the instructions' time to elapse
+            WaitSecs(param.instructionsDur);
 
             tasklog(end+1).desc = 'instructions-end';
             tasklog(end).onset = GetSecs - timeStartTask;
@@ -401,7 +385,7 @@ try
                 tasklog(end+1).desc = 'perf-incomplete';
                 tasklog(end).value = 'time to respond passed';
                 tasklog(end).onset = GetSecs - timeStartTask;
-                footer = '... DID YOU FORGET THE SEQUENCE? LETS TRY AGAIN ...';
+                footer = '... NO KEYS PRESSED. LETS TRY AGAIN ...';
             
             else
 
@@ -415,14 +399,14 @@ try
                     tasklog(end+1).desc = 'perf-incomplete';
                     tasklog(end).value = 'wrong hand';
                     tasklog(end).onset = GetSecs - timeStartTask;
-                    footer = '... WRONG HAND, LETS TRY AGAIN ...';
+                    footer = '... WRONG HAND. LETS TRY AGAIN ...';
 
                 % Wrong start of the sequence
                 else
                     tasklog(end+1).desc = 'perf-incomplete';
                     tasklog(end).value = 'wrong hand';
                     tasklog(end).onset = GetSecs - timeStartTask;
-                    footer = '... DID YOU FORGET THE SEQUENCE? LETS TRY AGAIN ...';
+                    footer = '... WRONG SEQUENCE. LETS TRY AGAIN ...';
                 end
             end % IF waitMax time
 
@@ -474,7 +458,7 @@ try
                         tasklog(end+1).desc = 'perf-incomplete';
                         tasklog(end).value = 'time to respond passed';
                         tasklog(end).onset = GetSecs - timeStartTask;
-                        footer = '... TIME TO RESPOND IS OVER. LETS TRY AGAIN ...';
+                        footer = '... NO KEYS PRESSED. LETS TRY AGAIN ...';
                         break;
                     end
 
