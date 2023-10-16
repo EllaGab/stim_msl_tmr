@@ -52,8 +52,7 @@ PsychDefaultSetup(2);
 KbName('UnifyKeyNames');
 
 % Disable transmission of keypresses to Matlab
-% To reenable keyboard input to Matlab, press CTRL+C
-% This is the same as ListenChar(0)
+% To reenable keyboard input to Matlab, press CTRL+C, which is the same as ListenChar(0)
 ListenChar(2);
 
 %% LOAD TASK PARAMETERS
@@ -181,6 +180,13 @@ tasklog = struct('desc', {}, 'onset', [], 'value', {}, 'digit', []);
 tasklog(end+1).desc = 'date and time the task started';
 tasklog(end).value = datestr(now);
 
+%% INIT PERFORMANCE STRUCTURE
+
+% Performance blocks info:
+%   - Duration: from the sound onset until the end of the block
+%   - The number of sequences completed
+perf_blocks = struct('dur', [], 'n_seq', []);
+
 %% DISPLAY SETTINGS
 
 [window, screenSize, screenCenter] = ld_createWindow(param);
@@ -250,12 +256,8 @@ try
     param.inds_order_soundHandSeq = inds_order_soundHandSeq;
     
     % Save
-    data_saved = save_data(output_fpath, param, tasklog);
+    save_data(output_fpath, param, tasklog, perf_blocks);
 
-    % Performance blocks info:
-    %   - Duration: from the sound onset until the end of the block
-    %   - The number of sequences completed
-    perf_blocks = struct('dur', [], 'n_seq', []);
 
     % --- REST BLOCK - START
 
@@ -270,7 +272,7 @@ try
     if quit
        [data_saved] = quit_task(...
          'interrupted by the experimenter', 'esc', ...
-        tasklog, timeStartTask, output_fpath, param ...
+        tasklog, timeStartTask, output_fpath, param, perf_blocks ...
         );
         return;
     end
@@ -308,7 +310,7 @@ try
         tasklog(end).digit = seq;
 
 
-        disp('');
+        disp(' ');
         disp(['BLOCK ', num2str(i_block)]);
         disp('---');
         disp(upper([hand.desc, ' hand']));
@@ -328,7 +330,7 @@ try
         key2digit_map = containers.Map(keys4hand, digits4hand);
 
         % keyCodes & keyNames of the hand
-        [keyCodes4hand, keyNames4hand] = ld_keys4input(param, hand.desc);
+        [~, keyNames4hand] = ld_keys4input(param, hand.desc);
 
         % Convert the first two elements of the sequence to keys.
         %   Is used to determine if the initiation of the block was
@@ -338,7 +340,7 @@ try
         for i = 1:2
             keysStartSeq{i} = digit2key_map(num2str(seq(i)));
         end
-
+        disp('Input keys to initiate the sequence:');
         disp(keysStartSeq);
         
         isCorrectStart = 0;     % Requires both correct hand & correct
@@ -376,7 +378,7 @@ try
             if quit
                 [data_saved] = quit_task(...
                 'interrupted by the experimenter', 'esc', ...
-                tasklog, timeStartTask, output_fpath, param ...
+                tasklog, timeStartTask, output_fpath, param, perf_blocks ...
                 );
                 return;
             end
@@ -440,7 +442,7 @@ try
                 if quit
                     [data_saved] = quit_task(...
                     'interrupted by the experimenter', 'esc', ...
-                    tasklog, timeStartTask, output_fpath, param ...
+                    tasklog, timeStartTask, output_fpath, param, perf_blocks ...
                     );
                     return;
                 end
@@ -466,7 +468,7 @@ try
                 if quit
                     [data_saved] = quit_task(...
                     'interrupted by the experimenter', 'esc', ...
-                    tasklog, timeStartTask, output_fpath, param ...
+                    tasklog, timeStartTask, output_fpath, param, perf_blocks ...
                     );
                     return;
                 end
@@ -496,7 +498,7 @@ try
             if quit
                 [data_saved] = quit_task(...
                 'interrupted by the experimenter', 'esc', ...
-                tasklog, timeStartTask, output_fpath, param ...
+                tasklog, timeStartTask, output_fpath, param, perf_blocks ...
                 );
                 return;
             end
@@ -538,14 +540,29 @@ try
             PsychPortAudio('Start', pahandle, 1, 0, 1); % repetitions = 1
         end
 
+        disp(' ');
         disp([ num2str(i_block), ' BLOCKS COMPLETED']);
-        disp(['Durations (secs) ' num2str([perf_blocks(:).dur])]);
-        disp(['Sequences (n)    ' num2str([perf_blocks(:).n_seq])]);
-        disp('---');
+        disp('Blocks durations (secs):');
+        for i = 1 : 10 : i_block
+            if i+9 > i_block
+                disp(num2str([perf_blocks(i:end).dur]));
+            else
+                disp(num2str([perf_blocks(i:i+9).dur]));
+            end
+        end
+        disp('The number of complete sequences:');
+        for i = 1 : 10 : i_block
+            if i+9 > i_block
+                disp(num2str([perf_blocks(i:end).n_seq]));
+            else
+                disp(num2str([perf_blocks(i:i+9).n_seq]));
+            end
+        end
+        disp(' ');
 
         % Update the number of completed blocks & save the data 
         param.nbBlocksCompleted = i_block;
-        data_saved = save_data(output_fpath, param, tasklog);
+        save_data(output_fpath, param, tasklog, perf_blocks);
 
         % Display black screen for transition
         Screen('FillRect', window, BlackIndex(window));
@@ -576,7 +593,7 @@ try
             if quit
                 [data_saved] = quit_task(...
                 'interrupted by the experimenter', 'esc', ...
-                tasklog, timeStartTask, output_fpath, param ...
+                tasklog, timeStartTask, output_fpath, param, perf_blocks ...
                 );
                 return;
             end
@@ -605,7 +622,7 @@ try
     if quit
        [data_saved] = quit_task(...
          'interrupted by the experimenter', 'esc', ...
-        tasklog, timeStartTask, output_fpath, param ...
+        tasklog, timeStartTask, output_fpath, param, perf_blocks ...
         );
         return;
     end
@@ -615,14 +632,14 @@ try
     tasklog(end).onset = GetSecs - timeStartTask;
 
     % Save all, clear, & close
-    data_saved = save_data(output_fpath, param, tasklog);
+    data_saved = save_data(output_fpath, param, tasklog, perf_blocks);
     clear_and_close();
 
 catch ME
     disp(['ID: ' ME.identifier]);
-    [data_saved] = quit_task(...
+    quit_task(...
     'something went wrong', ME.identifier, ...
-    tasklog, timeStartTask, output_fpath, param ...
+    tasklog, timeStartTask, output_fpath, param, perf_blocks ...
     );
     rethrow(ME);
 end
@@ -724,8 +741,8 @@ function output_fpath = get_output_fpath(param)
 end
 
 % --- Save the output
-function data_saved = save_data(output_fpath, param, tasklog)
-    save(output_fpath, 'param', 'tasklog');
+function data_saved = save_data(output_fpath, param, tasklog, perf_blocks)
+    save(output_fpath, 'param', 'tasklog', 'perf_blocks');
     data_saved = 1;
 end
 
@@ -771,14 +788,14 @@ end
 % --- Quit task
 function [data_saved] = quit_task(...
     quit_desc, quit_value, ...
-    tasklog, timeStartTask, output_fpath, param ...
+    tasklog, timeStartTask, output_fpath, param, perf_blocks ...
     )
     % Update tasklog
     tasklog(end+1).desc = quit_desc;
     tasklog(end).onset = GetSecs - timeStartTask;
     tasklog(end).value = quit_value;
     % Save, clear, & close
-    data_saved = save_data(output_fpath, param, tasklog);
+    data_saved = save_data(output_fpath, param, tasklog, perf_blocks);
     clear_and_close();
 end
 

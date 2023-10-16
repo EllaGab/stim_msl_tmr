@@ -81,7 +81,7 @@ keysPressed = {};
 timePressed = [];
 
 disp('');
-fprintf('Reading input keys: ');
+disp('Reading input keys: ');
 while ~returnNow && ...
         (countKeys < nbKeys) && ...
         ((GetSecs - timeStartReading) < duration)
@@ -93,7 +93,6 @@ while ~returnNow && ...
     % Key was pressed
     if any(keyCodePressed)
         keyName = KbName(keyCodePressed);
-        fprintf([keyName, ' ']);
         quit = any(contains(lower(keyName), 'esc'));
         ttlKeyPressed = any(contains(keyName, '5'));
         if ~isempty(validKeys)
@@ -105,6 +104,7 @@ while ~returnNow && ...
         if ~ returnNow && ...
                 (~ttlKeyPressed || (ttlKeyPressed && acceptTtl))
             countKeys = countKeys + 1;
+            disp(keyName);
             
             % Only one key was pressed, check if it is a target
             if ~iscell(keyName) && ~isempty(targetKeys)
@@ -131,7 +131,5 @@ while ~returnNow && ...
     returnNow = quit || waitMaxPassed || all(targetKeysPressed) || invalidKeyPressed;
 
 end
-
-fprintf('\n');
 
 end

@@ -70,24 +70,25 @@ param.seqs = seqs;
 hands = [];
 
 % DO NOT CHANGE THE ORGER OF THE DIGITS:
-%   Keep it from the index to little finger
+%   Keep it from the index finger to the little finger
 
+% Mapping for the MR-compatible keypads
+hands(end+1).desc = 'right';
+hands(end).digits = {'1', '2', '3', '4'};   % digits from the index finger to the little finger
+hands(end).keys = {'d', 'c', 'b', 'a'};     % Keys that correspond to each digit
+
+hands(end+1).desc = 'left';
+hands(end).digits = {'1', '2', '3', '4'};   % digits from the index finger to the little finger
+hands(end).keys = {'1', '2', '3', '4'};     % Keys that correspond to each digit
+
+% % Mapping for debugging purposes only using a keyboard
 % hands(end+1).desc = 'right';
 % hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
-% hands(end).keys = {'a', 'b', 'c', 'd'};     % Keys that correspond to each digit
+% hands(end).keys = {'6', '7', '8', '9'};     % Keys that correspond to each digit
 % 
 % hands(end+1).desc = 'left';
 % hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
 % hands(end).keys = {'4', '3', '2', '1'};     % Keys that correspond to each digit
-
-% For debugging purposes only using a keyboard
-hands(end+1).desc = 'right';
-hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
-hands(end).keys = {'6', '7', '8', '9'};     % Keys that correspond to each digit
-
-hands(end+1).desc = 'left';
-hands(end).digits = {'1', '2', '3', '4'};   % digits from the index to little finger
-hands(end).keys = {'4', '3', '2', '1'};     % Keys that correspond to each digit
 
 param.hands = hands;
 

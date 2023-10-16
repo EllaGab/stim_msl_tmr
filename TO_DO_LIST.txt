@@ -1,30 +1,6 @@
 
 --- IMPLEMENT OR FIX
 
-    >   PreSleep menu is updated and now contains two traning phases
-        TEST PASSED
-
-    >   Change all the steps of the familiarization phases so that they can be run together with the scanning
-        - Resolved by setting instructions' time; DEFAULT: 5 secs
-        TEST PASSED
-
-    >   Fix the size of the text when the participant makes a mistake initiating the performance
-        (e.g., enters incorrectly the first two keys or uses a wrong hand)
-        The text was shortened.
-        TEST PASSED, CHECK INSIDE MR SUIT
-
-    >   Save the output only after the performance block is completed (do not access the file during the performance)
-
-	> 	Present only the remaining blocks if the session was previously initiated
-		- The number of completed blocks should be saved in the param file
-
-    >   Show the full feedback display during the training and tests
-        - The viewer should be able to view all the results, right now the only first 
-           few trail performance can be viewed. 
-
-    >   Save the feedback performance data in text/csv files in output folder after performance
-
-
 When done:
 > hide the cursor
 > remove the rsa key from the task computer
@@ -40,7 +16,7 @@ See "help DisableKeysForKbCheck" on how to do this.
 ---
 
 Add a ListenChar(2) command at the beginning of your script and 
-a ListenChar(0) to the end of your script to disable/enable transmission of 
+a ListenChar(0) at the end of your script to disable/enable transmission of 
 keypresses to Matlab.
 
 If your script should abort and your keyboard is dead,

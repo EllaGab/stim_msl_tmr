@@ -65,6 +65,9 @@ function stim_OpeningFcn(hObject, eventdata, handles, varargin)
     
     % Update handles structure
     guidata(hObject, handles);
+
+    % turn beep sound off
+    beep off;
     
     [main_dpath,~,~] = fileparts(which('stim.m'));
     
@@ -172,6 +175,9 @@ function buttonQuit_Callback(hObject, eventdata, handles)
     rmpath(fullfile(main_dpath,'stimuli'));
     rmpath(fullfile(main_dpath,'experiments'));
     rmpath(fullfile(main_dpath,'utils'));
+
+    % Turn beep sound on
+    beep on;
     
     % Clear & close all
     close all;
